@@ -7,7 +7,12 @@
   <title>Golden Slice Pizza | Fresh • Wood-Fired • Local</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Load Google Fonts non-render-blocking -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap">
+  </noscript>
   <!-- Preload the hero image to improve LCP on mobile -->
   <link rel="preload" as="image" href="images/pizza deal.webp">
   <link rel="stylesheet" href="styles.css" />
@@ -65,7 +70,7 @@
 
       <div class="menu-layout">
         <aside class="menu-preview" aria-hidden="true">
-          <img id="menuPreviewImg" src="images/pizza-3010062_1280.jpg" alt="Category preview" loading="lazy" decoding="async" />
+          <img id="menuPreviewImg" src="images/pizza-3010062_1280.jpg" alt="Category preview" loading="lazy" decoding="async" sizes="(max-width: 639px) 100vw, (min-width: 640px) 33vw" />
         </aside>
 
         <div class="menu-grid">
@@ -116,7 +121,7 @@
 
       <div class="menu-layout">
         <aside class="menu-preview" aria-hidden="true">
-          <img src="images/pizza deal.webp" alt="Deals preview" loading="lazy" decoding="async" />
+          <img src="images/pizza deal.webp" alt="Deals preview" loading="lazy" decoding="async" sizes="(max-width: 639px) 100vw, (min-width: 640px) 33vw" />
         </aside>
 
         <div class="menu-grid">
@@ -194,7 +199,7 @@
         </ul>
       </div>
       <div class="about-media" aria-hidden="true">
-        <img src="images/pizza slice.jpg" alt="Fresh pizza slice with basil and cheese" loading="lazy" />
+        <img src="images/pizza slice.jpg" alt="Fresh pizza slice with basil and cheese" loading="lazy" decoding="async" sizes="(max-width: 639px) 100vw, 45vw" />
       </div>
     </div>
   </section>
