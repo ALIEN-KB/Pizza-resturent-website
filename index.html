@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <!-- Preload the hero image to improve LCP on mobile -->
+  <link rel="preload" as="image" href="images/pizza deal.webp">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -50,7 +52,7 @@
         </div>
       </div>
       <div class="hero-media" aria-hidden="true">
-        <img src="images/pizza deal.webp" alt="Wood-fired pepperoni pizza" loading="eager" />
+        <img src="images/pizza deal.webp" alt="Wood-fired pepperoni pizza" loading="eager" decoding="async" fetchpriority="high" sizes="(max-width: 639px) 100vw, 45vw" />
       </div>
     </div>
   </section>
@@ -63,7 +65,7 @@
 
       <div class="menu-layout">
         <aside class="menu-preview" aria-hidden="true">
-          <img id="menuPreviewImg" src="images/pizza-3010062_1280.jpg" alt="Category preview" />
+          <img id="menuPreviewImg" src="images/pizza-3010062_1280.jpg" alt="Category preview" loading="lazy" decoding="async" />
         </aside>
 
         <div class="menu-grid">
@@ -114,7 +116,7 @@
 
       <div class="menu-layout">
         <aside class="menu-preview" aria-hidden="true">
-          <img src="images/pizza deal.webp" alt="Deals preview" />
+          <img src="images/pizza deal.webp" alt="Deals preview" loading="lazy" decoding="async" />
         </aside>
 
         <div class="menu-grid">
@@ -216,12 +218,17 @@
       </div>
       <div class="map">
         <h3>Find Us</h3>
-        <div class="map-embed">
-          <iframe
-            title="Map to Pizza Shop in Lahore"
-            src="https://www.google.com/maps?q=31.5204,74.3587&z=15&output=embed"
-            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-embed" id="mapPlaceholder" data-map-src="https://www.google.com/maps?q=31.5204,74.3587&z=15&output=embed" role="button" aria-label="Load map" tabindex="0">
+          <div class="map-placeholder-inner">
+            <p>Tap to load interactive map</p>
+            <button class="btn outline small" type="button">Load Map</button>
+          </div>
         </div>
+        <noscript>
+          <div class="map-embed">
+            <iframe title="Map to Pizza Shop in Lahore" src="https://www.google.com/maps?q=31.5204,74.3587&z=15&output=embed" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </noscript>
         <p style="margin-top:.5rem"><a href="https://www.google.com/maps?daddr=31.5204,74.3587" target="_blank" rel="noopener">Get Directions to Demo Restaurant, Lahore →</a></p>
         <h3 class="section-title" style="margin-top:1rem">Visit Our Restaurant</h3>
         <p class="section-subtitle">Drop by and taste it fresh from the oven — we’d love to serve you.</p>

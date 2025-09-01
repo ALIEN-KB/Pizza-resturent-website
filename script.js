@@ -24,6 +24,56 @@
   });
 })();
 
+// Click-to-load Google Map to reduce third-party cost on mobile
+(function () {
+  const placeholder = document.getElementById('mapPlaceholder');
+  if (!placeholder) return;
+
+  const src = placeholder.getAttribute('data-map-src');
+  if (!src) return;
+
+  function loadMap() {
+    // Prevent multiple loads
+    if (placeholder.dataset.loaded === '1') return;
+    placeholder.dataset.loaded = '1';
+    const iframe = document.createElement('iframe');
+    iframe.title = 'Map to Pizza Shop in Lahore';
+    iframe.src = src;
+    iframe.style.border = '0';
+    iframe.loading = 'lazy';
+    iframe.referrerPolicy = 'no-referrer-when-downgrade';
+    // Clear and insert iframe
+    placeholder.innerHTML = '';
+    placeholder.appendChild(iframe);
+    // Remove button semantics after load
+    placeholder.removeAttribute('role');
+    placeholder.removeAttribute('tabindex');
+  }
+
+  // Activate on click/touch/keyboard
+  placeholder.addEventListener('click', loadMap, { once: true });
+  placeholder.addEventListener('touchstart', loadMap, { once: true, passive: true });
+  placeholder.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      loadMap();
+    }
+  }, { once: true });
+
+  // Optional: if placeholder is in view for a while, auto-load to improve UX
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+          loadMap();
+          io.disconnect();
+        }
+      });
+    }, { threshold: [0, 0.6, 1] });
+    io.observe(placeholder);
+  }
+})();
+
 // Dynamic year in footer
 (function () {
   const y = document.getElementById('year');
