@@ -102,11 +102,11 @@
       const img = new Image();
       img.onload = () => {
         previewImg.src = src;
-        // If data-alt provided, update alt for accessibility
+        
         if (swap.lastAlt) {
           previewImg.alt = swap.lastAlt;
         }
-        // allow one frame for src swap, then remove class for fade-in
+        
         requestAnimationFrame(() => previewImg.classList.remove('swap'));
       };
       img.src = src;
@@ -124,7 +124,7 @@
       const run = () => { swap.lastAlt = alt; swap(src); show(); };
       card.addEventListener('mouseenter', run);
       card.addEventListener('focusin', run);
-      // Optional: also respond to touchstart for mobile tap
+      
       card.addEventListener('touchstart', run, { passive: true });
       card.addEventListener('focusout', (e) => {
         if (grid && !grid.contains(e.relatedTarget)) hideDebounced();
